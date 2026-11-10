@@ -3,9 +3,7 @@
 A small compiled Rust CLI that lets agents call Merit Aktiva using project
 aliases. A local TOML lookup maps each alias to a 1Password Environment. The CLI
 reads `op environment read <id>` over private pipes into memory, signs the exact
-request bytes, makes the HTTPS call, and returns a redacted response. This follows
-Handhold lab’s loading approach: values are never shell-evaluated, written to a
-plaintext file, or exported into a process environment.
+request bytes, makes the HTTPS call, and returns a redacted response.
 
 There are no invoice/customer/report models to maintain. Give it an endpoint
 and JSON from the [Merit reference manual](https://api.merit.ee/connecting-robots/reference-manual/).
@@ -65,14 +63,6 @@ support; `--auth` also checks that both credential variables can be loaded. Neit
 doctor mode contacts Merit or verifies that the credentials are accepted by Merit.
 Desktop authorization can prompt through 1Password. Existing service-account or
 session-based CLI authentication is also passed to `op`.
-
-Like Handhold, the loader parses literal `KEY=value` lines, preserving equals
-signs and special characters. Duplicate names, malformed/multiline output,
-quote-wrapped values, more than 512 variables, or more than 16 MiB fail closed.
-Only the two configured Merit values are retained. Missing values never fall back
-to exported shell credentials. Provider errors report safe troubleshooting hints
-without forwarding raw output. This implementation uses the CLI, not a native
-1Password language SDK.
 
 The lookup defaults to `$XDG_CONFIG_HOME/merit/config.toml`, or
 `~/.config/merit/config.toml`. There is no automatic project-directory config
