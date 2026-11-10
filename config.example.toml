@@ -1,0 +1,22 @@
+# Copy the structure, then enter Environment IDs (not credentials).
+# Get IDs in 1Password > Developer > Environments > Manage environment.
+version = 1
+
+[projects.rouk]
+environment = "REPLACE_WITH_ROUK_ENVIRONMENT_ID"
+api_id_var = "MERIT_API_ID"
+api_key_var = "MERIT_API_KEY"
+region = "ee"
+api_version = "v1"
+read_only = true
+# account = "my.1password.com"
+# Optional additional exact reads, reviewed by the config owner:
+# read_endpoints = ["POST /api/v2/new_read_endpoint"]
+
+[projects.other_company]
+environment = "REPLACE_WITH_OTHER_ENVIRONMENT_ID"
+api_id_var = "MERIT_API_ID"
+api_key_var = "MERIT_API_KEY"
+region = "ee"
+api_version = "v2"
+read_only = false

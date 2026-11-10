@@ -1,0 +1,30 @@
+[package]
+name = "merit-proxy"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+description = "A credential-hiding Merit Aktiva transport for agents"
+publish = false
+
+[[bin]]
+name = "mp"
+path = "src/main.rs"
+
+[dependencies]
+base64 = "0.22"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+clap = { version = "4.5", features = ["derive"] }
+hmac = "0.12"
+libc = "0.2"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "rustls-tls-webpki-roots"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["arbitrary_precision"] }
+sha2 = "0.10"
+tempfile = "3"
+toml = "0.8"
+zeroize = "1"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true

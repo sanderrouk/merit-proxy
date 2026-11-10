@@ -1,0 +1,37 @@
+# Reviewed against official Merit documentation on 2026-11-10.
+# Exact method + version + path. No inference from names or prefixes.
+# This list is compiled into mp. Per-project read_endpoints extend it without rebuilding.
+
+# https://api.merit.ee/connecting-robots/reference-manual/customers/get-customer-list/
+POST /api/v1/getcustomers
+# https://api.merit.ee/connecting-robots/reference-manual/vendors/get-vendor-list/
+POST /api/v1/getvendors
+# https://api.merit.ee/connecting-robots/reference-manual/items/items-list/
+POST /api/v1/getitems
+# https://api.merit.ee/connecting-robots/reference-manual/accounts-list/
+GET /api/v2/accounts
+# https://api.merit.ee/connecting-robots/reference-manual/sales-invoices/get-list-of-invoices/
+POST /api/v1/getinvoices
+POST /api/v2/getinvoices
+POST /api/v2/getinvoices2
+# https://api.merit.ee/connecting-robots/reference-manual/sales-invoices/get-invoice-details/
+POST /api/v1/getinvoice
+POST /api/v2/getinvoice
+# https://api.merit.ee/connecting-robots/reference-manual/sales-invoices/create-sales-invoice/get-sales-invoice-pdf/
+POST /api/v2/getsalesinvpdf
+# https://api.merit.ee/connecting-robots/reference-manual/purchase-invoices/get-list-of-purchase-invoices/
+POST /api/v1/getpurchorders
+POST /api/v2/getpurchorders
+# https://api.merit.ee/connecting-robots/reference-manual/purchase-invoices/get-purchase-invoice-details/
+POST /api/v1/getpurchorder
+POST /api/v2/getpurchorder
+# https://api.merit.ee/connecting-robots/reference-manual/general-ledger-transactions/get-list-of-gl-transactions/
+POST /api/v1/getglbatches
+# https://api.merit.ee/connecting-robots/reference-manual/general-ledger-transactions/getting-gl-transaction-details/
+POST /api/v1/getglbatch
+# https://api.merit.ee/connecting-robots/reference-manual/reports/customer-debts-report/
+POST /api/v1/getcustdebtrep
+# https://api.merit.ee/connecting-robots/reference-manual/reports/income-statement/
+POST /api/v1/getprofitrep
+# https://api.merit.ee/connecting-robots/reference-manual/reports/balance-sheet/
+POST /api/v1/getbalancerep
