@@ -1,0 +1,6 @@
+/target/
+/.cargo-home/
+/.firecrawl/
+/.local/
+*.log
+.DS_Store
