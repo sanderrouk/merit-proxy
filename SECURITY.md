@@ -13,7 +13,7 @@ same OS user.
    validates JSON, PDF uploads and download paths. Uploads are base64-encoded into
    JSON, then the resulting exact bytes are signed and sent.
 3. It invokes the installed 1Password CLI without a shell:
-   `op --format human-readable --encoding UTF-8 --no-color [--account ACCOUNT] environment read ID`.
+   `op --format human-readable --no-color [--account ACCOUNT] environment read ID`.
    The CLI executable is resolved only from absolute PATH entries. Stdout and
    stderr are captured through private bounded pipes. No raw provider output is
    forwarded to the caller.
@@ -35,7 +35,9 @@ same OS user.
   fetched entries named `PATH` or `OP_DEBUG` remain inert data.
 - Provider inheritance is restricted to OS context and necessary 1Password
   authentication context. Ambient Merit, proxy, loader, and debug settings are
-  not passed to `op`. Output format and encoding are explicitly selected.
+  not passed to `op`. The output format is explicitly selected; `op` rejects an
+  explicit `--encoding UTF-8`, so its UTF-8 default is used and the parser rejects
+  non-UTF-8 output.
 - The parser rejects invalid/duplicate variable names, quote-wrapped values,
   malformed/multiline output, more than 512 variables or more than 16 MiB. It
   preserves equals signs and shell metacharacters literally.

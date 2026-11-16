@@ -62,8 +62,8 @@ fn json(output: &Output) -> Value {
 
 const FAKE_OP: &str = r#"
 [ "$1" = --format ] && [ "$2" = human-readable ] || exit 80
-[ "$3" = --encoding ] && [ "$4" = UTF-8 ] && [ "$5" = --no-color ] || exit 81
-shift 5
+[ "$3" = --no-color ] || exit 81
+shift 3
 if [ "$1" = --account ]; then
   [ "$2" = test-account ] || exit 82
   shift 2
@@ -569,7 +569,7 @@ fn literal_environment_parsing_never_evaluates_shell_code_or_logs_secrets() {
     let marker = f.root.path().join("must-not-exist");
     f.op(&format!(
         r#"
-if [ "$8" = --help ]; then echo 'op environment read'; exit 0; fi
+if [ "$6" = --help ]; then echo 'op environment read'; exit 0; fi
 cat <<'SECRETS'
 MERIT_API_ID=canary-private-id
 MERIT_API_KEY=canary+key/with=padding==
@@ -628,7 +628,7 @@ fn environment_parser_fails_closed_on_ambiguous_or_invalid_data() {
         ),
     ];
     for content in cases {
-        f.op(&format!("if [ \"$8\" = --help ]; then echo 'op environment read'; exit 0; fi\ncat <<'SECRETS'\n{content}\nSECRETS\n"));
+        f.op(&format!("if [ \"$6\" = --help ]; then echo 'op environment read'; exit 0; fi\ncat <<'SECRETS'\n{content}\nSECRETS\n"));
         let out = f.run(&["--debug", "-p", "rouk", "doctor", "--auth"]);
         assert_eq!(out.status.code(), Some(3));
         assert!(out.stdout.is_empty());
@@ -671,7 +671,7 @@ fn provider_format_is_fixed_and_crlf_values_are_supported() {
         .output()
         .unwrap();
     assert!(out.status.success());
-    f.op("if [ \"$8\" = --help ]; then echo 'op environment read'; exit 0; fi\nprintf 'MERIT_API_ID=canary-id\\r\\nMERIT_API_KEY=canary-key==\\r\\n'");
+    f.op("if [ \"$6\" = --help ]; then echo 'op environment read'; exit 0; fi\nprintf 'MERIT_API_ID=canary-id\\r\\nMERIT_API_KEY=canary-key==\\r\\n'");
     assert!(f.run(&["-p", "rouk", "doctor", "--auth"]).status.success());
 }
 

@@ -24,6 +24,10 @@ Requires Rust 1.89+ and 1Password CLI with `op environment read` support.
 macOS and Linux are the supported platforms. Your installed CLI can be checked
 without retrieving credentials with `op environment read --help`.
 
+As of November 2026 `op environment read` exists only in the beta channel
+(2.44.0-beta.02 works; stable 2.42.0 has `op environment secret list` but no
+`read`). On macOS: `brew install --cask 1password-cli@beta`.
+
 ```sh
 cargo build --release --locked
 ./target/release/mp --help
@@ -389,7 +393,7 @@ occurs before any Merit request is sent.
 
 | Symptom | Check |
 | --- | --- |
-| CLI lacks Environment support | Install an `op` release that supports `environment read --help` |
+| CLI lacks Environment support | Install an `op` release that supports `environment read --help` (currently the beta channel) |
 | Credential loading fails | Unlock 1Password; enable CLI integration; verify Environment ID, account and access |
 | Missing ID/key variable | Check the names in the Environment against `api_id_var` / `api_key_var` |
 | HTTP 401/403 | Verify credentials, company/license access and the machine's UTC clock |

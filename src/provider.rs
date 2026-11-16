@@ -69,13 +69,7 @@ fn op_command() -> Result<Command> {
     }
     command.env("OP_DEBUG", "false");
     // The parser consumes literal KEY=value lines, independent of caller settings.
-    command.args([
-        "--format",
-        "human-readable",
-        "--encoding",
-        "UTF-8",
-        "--no-color",
-    ]);
+    command.args(["--format", "human-readable", "--no-color"]);
     Ok(command)
 }
 
